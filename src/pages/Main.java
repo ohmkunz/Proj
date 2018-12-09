@@ -66,29 +66,7 @@ public class Main extends Application{
 		
 		
 		
-		
-		
-		
-		
-		/*Login login = new Login();
-		s1.getChildren().addAll(login);
-		Scene scene1 = new Scene(s1,1000, 800);
-		primaryStage.setScene(scene1); // Place the scene
-		primaryStage.setTitle("CDRent");
-		
-		
-		StackPane s2 = new StackPane();
-		Registration reg = new Registration();
-		s2.getChildren().addAll(reg);
-		Scene scene2 = new Scene(s2,1000, 800);
-		s2.setStyle("-fx-background-color:#2A2E37;");
-		
-		
-		ForgetPassword forget = new ForgetPassword();
-		StackPane s3 = new StackPane();
-        s3.getChildren().addAll(forget);
-        Scene scene3 = new Scene(s3,1000,800);
-        s3.setStyle("-fx-background-color:#2A2E37;");*/
+	
 		
         
 		

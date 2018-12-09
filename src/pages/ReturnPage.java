@@ -13,9 +13,9 @@ import javafx.scene.text.Font;
 
 public class ReturnPage extends HBox {
 	private MakeHead head;
-	private Label DVDName;
+	
 	private ComboBox<String> DVDNameCombobox;
-	private Label Number;
+	
 	private ComboBox<String> NumberCombobox;
 	private ReturnList returnList;
 	
@@ -34,23 +34,23 @@ public class ReturnPage extends HBox {
 		collector.setSpacing(30);
 		collector.setPadding(new Insets(15));
 		///////////////////
-		DVDName = new Label("DVD List");
+		
 		
 		DVDNameCombobox = new ComboBox<>();
 		DVDNameCombobox.getItems().addAll("Lord of the ring","Harry potter","Game of throne",
 				"Divergent", "Twilight", "Hungergame", "Percy jackson");
 		DVDNameCombobox.setEditable(false);
 		
-		setupCombobox(DVDNameCombobox, DVDName);
+		setupCombobox(DVDNameCombobox, "DVD List");
 		/////////////////////////
 		
-		Number = new Label("Number To Return");
+		
 		
 		NumberCombobox = new ComboBox<>();
 		NumberCombobox.getItems().addAll("1","2","3");
 		NumberCombobox.setEditable(true);
 		
-		setupCombobox(NumberCombobox,Number);
+		setupCombobox(NumberCombobox,"Number To Return");
 		////////////////
 		HBox choice = new HBox();
 		choice.setAlignment(Pos.CENTER);
@@ -66,7 +66,7 @@ public class ReturnPage extends HBox {
 		this.returnList.setPrefWidth(500);
 		
 		
-		collector.getChildren().addAll(head,DVDName,DVDNameCombobox,Number,NumberCombobox,choice);
+		collector.getChildren().addAll(head,DVDNameCombobox,NumberCombobox,choice);
 		getChildren().addAll(collector,returnList);
 	}
 	
@@ -94,14 +94,9 @@ public class ReturnPage extends HBox {
 		DVDNameCombobox.getSelectionModel().clearSelection();;
 		NumberCombobox.getSelectionModel().clearSelection();
 	}
-	public <T> void setupCombobox(ComboBox<T> comboBox,Label headLabel) {
+	public <T> void setupCombobox(ComboBox<T> comboBox,String promptText) {
 		
-		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
 		
-		headLabel.setFont(f);
-		
-		headLabel.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
 		comboBox.setStyle("-fx-font-family:thaisanslite;"
 				+ "-fx-color:#B2B2B2;"
 				+ "-fx-font-size : 15pt;"
@@ -109,6 +104,7 @@ public class ReturnPage extends HBox {
 				+ "-fx-pref-height: 40px;"
 				+ "-fx-pref-width: 300px;"
 				+ "-fx-background-color:#FFFFFF;");
+		comboBox.setPromptText(promptText);
 		
 	}
 }

@@ -18,14 +18,16 @@ public class RentPage extends HBox {
 	private ComboBox<String> Discount;
 	private ComboBox<String> theNumberToRent;
 	private ComboBox<String> dayForRent;
-	private Label chooseDvd;
-	private Label card;
-	private Label numberToRent;
-	private Label day;
+	
 	private ButtonField back;
 	private ButtonField calculate;
 	private RentList rentList;
+	
 	public RentPage() {
+		
+		
+		
+		
 		
 		setAlignment(Pos.CENTER);
 		setSpacing(30);
@@ -38,7 +40,7 @@ public class RentPage extends HBox {
 		
 		this.head = new MakeHead("cinema","Choose What You Want");
 		//////////
-		this.chooseDvd = new Label("Choose Your DVD");
+		
 		
 		
 		DVDNameCombobox = new ComboBox<>();
@@ -46,36 +48,37 @@ public class RentPage extends HBox {
 				"Divergent", "Twilight", "Hungergame", "Percy jackson");
 		
 		DVDNameCombobox.setEditable(false);
-	
-		setupCombobox(DVDNameCombobox, chooseDvd);
+		
+		setupCombobox(DVDNameCombobox, "Choose Your DVD");
 		
 		///////////////
-		this.card = new Label("Select Your Card");
+		
 		
 		Discount = new ComboBox<>();
 		Discount.getItems().addAll("Gold Card", "Silver Card", "Copper Card", "No card");
 		Discount.setEditable(false);
 		
-		setupCombobox(Discount, card);
+		setupCombobox(Discount, "Select Your Card");
 		
 		///////////
-		this.numberToRent = new Label("NumBer You Want To Rent");
+		
 		
 		
 		theNumberToRent = new  ComboBox<>();
 		theNumberToRent.getItems().addAll("1","2","3");
 		theNumberToRent.setEditable(true);
 		
-		setupCombobox(theNumberToRent,numberToRent);
+		setupCombobox(theNumberToRent,"NumBer You Want To Rent");
+		
 		//////////
 		
-		this.day = new Label("Please Select The Day");
+		
 		
 		dayForRent = new ComboBox<>();
 		dayForRent.getItems().addAll("3 days","7 days","14 day","30 day"); 
 		dayForRent.setEditable(false);
 		
-		setupCombobox(dayForRent, day);
+		setupCombobox(dayForRent,"Please Select The Day");
 		
 		///////
 		HBox choice = new HBox();
@@ -87,7 +90,7 @@ public class RentPage extends HBox {
 		calculate = new ButtonField("Calculation","#e27589");
 		choice.getChildren().addAll(back,calculate);
 		//////
-		collector.getChildren().addAll(head,chooseDvd,DVDNameCombobox,card,Discount,numberToRent,theNumberToRent,day,dayForRent,choice);
+		collector.getChildren().addAll(head,DVDNameCombobox,Discount,theNumberToRent,dayForRent,choice);
 		rentList = new RentList();
 		rentList.setPrefWidth(500);
 		
@@ -136,24 +139,25 @@ public class RentPage extends HBox {
 		Discount.getSelectionModel().clearSelection();
 		theNumberToRent.getSelectionModel().clearSelection();
 		dayForRent.getSelectionModel().clearSelection();
+		
 	}
 	
-	public <T> void setupCombobox(ComboBox<T> comboBox,Label headLabel) {
+	public <T> void setupCombobox(ComboBox<T> comboBox,String promptText) {
 		
-		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
 		
-		headLabel.setFont(f);
-		
-		headLabel.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
 		comboBox.setStyle("-fx-font-family:thaisanslite;"
 				+ "-fx-color:#B2B2B2;"
 				+ "-fx-font-size : 15pt;"
 				+"src:url(font/supermarket.tff);"
 				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
+				+ "-fx-pref-width: 320px;"
 				+ "-fx-background-color:#FFFFFF;");
 		
+		comboBox.setPromptText(promptText);
+		
 	}
+	
+	
+
 	
 }
