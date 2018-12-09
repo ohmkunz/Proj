@@ -26,7 +26,7 @@ public class RentPage extends HBox {
 	private ButtonField calculate;
 	private RentList rentList;
 	public RentPage() {
-		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
+		
 		setAlignment(Pos.CENTER);
 		setSpacing(30);
 		setPadding(new Insets(15));
@@ -39,73 +39,43 @@ public class RentPage extends HBox {
 		this.head = new MakeHead("cinema","Choose What You Want");
 		//////////
 		this.chooseDvd = new Label("Choose Your DVD");
-		chooseDvd.setFont(f);
-		chooseDvd.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
+		
 		
 		DVDNameCombobox = new ComboBox<>();
 		DVDNameCombobox.getItems().addAll("Lord of the ring","Harry potter","Game of throne",
 				"Divergent", "Twilight", "Hungergame", "Percy jackson");
 		
 		DVDNameCombobox.setEditable(false);
-		DVDNameCombobox.setStyle("-fx-font-family:thaisanslite;"
-				+ "-fx-color:#B2B2B2;"
-				+ "-fx-font-size : 15pt;"
-				+"src:url(font/supermarket.tff);"
-				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
-				+ "-fx-background-color:#FFFFFF;");
+	
+		setupCombobox(DVDNameCombobox, chooseDvd);
 		
 		///////////////
 		this.card = new Label("Select Your Card");
 		
-		card.setFont(f);
-		card.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
-		
 		Discount = new ComboBox<>();
 		Discount.getItems().addAll("Gold Card", "Silver Card", "Copper Card", "No card");
 		Discount.setEditable(false);
-		Discount.setStyle("-fx-font-family:thaisanslite;"
-				+ "-fx-color:#B2B2B2;"
-				+ "-fx-font-size : 15pt;"
-				+"src:url(font/supermarket.tff);"
-				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
-				+ "-fx-background-color:#FFFFFF;");
+		
+		setupCombobox(Discount, card);
 		
 		///////////
 		this.numberToRent = new Label("NumBer You Want To Rent");
-		numberToRent.setFont(f);
-		numberToRent.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
+		
 		
 		theNumberToRent = new  ComboBox<>();
 		theNumberToRent.getItems().addAll("1","2","3");
 		theNumberToRent.setEditable(true);
-		theNumberToRent.setStyle("-fx-font-family:thaisanslite;"
-				+ "-fx-color:#B2B2B2;"
-				+ "-fx-font-size : 15pt;"
-				+"src:url(font/supermarket.tff);"
-				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
-				+ "-fx-background-color:#FFFFFF;");
+		
+		setupCombobox(theNumberToRent,numberToRent);
 		//////////
 		
 		this.day = new Label("Please Select The Day");
-		day.setFont(f);
-		day.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
+		
 		dayForRent = new ComboBox<>();
 		dayForRent.getItems().addAll("3 days","7 days","14 day","30 day"); 
 		dayForRent.setEditable(false);
-		dayForRent.setStyle("-fx-font-family:thaisanslite;"
-				+ "-fx-color:#B2B2B2;"
-				+ "-fx-font-size : 15pt;"
-				+"src:url(font/supermarket.tff);"
-				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
-				+ "-fx-background-color:#FFFFFF;");
+		
+		setupCombobox(dayForRent, day);
 		
 		///////
 		HBox choice = new HBox();
@@ -166,6 +136,24 @@ public class RentPage extends HBox {
 		Discount.getSelectionModel().clearSelection();
 		theNumberToRent.getSelectionModel().clearSelection();
 		dayForRent.getSelectionModel().clearSelection();
+	}
+	
+	public <T> void setupCombobox(ComboBox<T> comboBox,Label headLabel) {
+		
+		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
+		
+		headLabel.setFont(f);
+		
+		headLabel.setStyle("-fx-text-fill:#B2B2B2;"
+				+ "fx-font-size:25pt");
+		comboBox.setStyle("-fx-font-family:thaisanslite;"
+				+ "-fx-color:#B2B2B2;"
+				+ "-fx-font-size : 15pt;"
+				+"src:url(font/supermarket.tff);"
+				+ "-fx-pref-height: 40px;"
+				+ "-fx-pref-width: 300px;"
+				+ "-fx-background-color:#FFFFFF;");
+		
 	}
 	
 }

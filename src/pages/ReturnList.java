@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
+
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -37,10 +37,10 @@ public class ReturnList extends StackPane {
 	public void addData(String DVDName, int number,String name,String tel) {
 		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
 		
-		Label newLabel = new Label(Number++ +name+"# "+tel+"\n returns "+number +" of "+ " " + DVDName + "  to stock.");
+		Label newLabel = new Label(Number++ +". "+ name+" Tel. "+tel+"\n returns "+number +" of "+ " " + DVDName + "  to stock.");
 		newLabel.setFont(f);
 		
-		newLabel.setStyle("-fx-text-fill:#B2B2B2;"
+		newLabel.setStyle("-fx-text-fill:#2A2E37;"
 				+ "fx-font-size:10px");
 		
 		logDataList.add(newLabel);

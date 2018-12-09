@@ -3,11 +3,10 @@ package fields;
 import java.util.Arrays;
 
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 import pages.RentPage;
 
-public class Inventory {
+public class Inventory implements RentDvd{
 	
 	public static String DVDName[] = {"Lord of the ring","Harry potter","Game of throne",
 			"Divergent", "Twilight", "Hungergame", "Percy jackson"};
@@ -19,72 +18,51 @@ public class Inventory {
 	private int day;
 	private RentPage rentPage;
 	
-	private boolean reTurnable ;
+	private boolean returnable ;
 	
 	public Inventory(RentPage rentPage) {
 		this.rentPage = rentPage;
-		this.reTurnable = true;
+		this.returnable = true;
 	}
-	/*public Inventory(String name,int stock,int day) {
-		this.name=name;
-		this.stock=stock;
-		this.day=day;
-	}*/
 	
-	public void LoanDVD(String name, int stock, int day) {
-		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-		int i = Arrays.asList(DVDName).indexOf(name);
-		/*if(i < 0) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText("Don't have " + name + " in stock");
-			alert.showAndWait();
-		}else {*/
-			this.DVDStock[i] -= stock;
-			//LoanPage loanpage = new LoanPage();
-			String card = this.rentPage.getDiscount();
-			double discount = 1;
-			if(card.equals("Gold card")) {
-				discount = 0.7;
-			}else if(card.equals("Silver card")) {
-				discount = 0.8;
-			}else if(card.equals("Copper card")) {
-				discount = 0.9;
-			}else {
-				discount = 1;
-			}
-			price = (Double) (discount)*(this.DVDPrice[i] + day*5);
-		}
+	
+	
 		
-	//}
 	
-	public boolean ReturnDVD(String name, int stock) {
+	
+	public boolean returnDVD(String name, int stock) throws MyException {
 		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		int i = Arrays.asList(DVDName).indexOf(name);
 		if(DVDStock[i]+stock>12) {
-			Alert alert = new Alert(AlertType.ERROR);
+			/*Alert alert = new Alert(AlertType.ERROR);
 			alert.setContentText("Number of DVD has reached the max number.\nNow we have "+(int)DVDStock[i]+" instock"
 					+ "\nPlease input the right number of return DVD again.");
-			alert.showAndWait();
-			return false;
+			alert.showAndWait();*/
+			throw new MyException("Number of DVD has reached the max number.\nNow we have "+(int)DVDStock[i]+" instock"
+					+ "\nPlease input the right number of return DVD again.");
+			//this.reTurnable = false;
+			
 			
 		}else {
 			this.DVDStock[i] += stock;
-			return true;
+			this.returnable = true;
 		}
+		return isReTurnable();
 		
 	}
 	
-	public double getPrice(String name,int day,int stock) {
+	public double rentDVD(String name,int day,int stock) throws MyException {
 		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		int i = Arrays.asList(DVDName).indexOf(name);
 		if(DVDStock[i]-stock<0.0) {
-			Alert alert = new Alert(AlertType.ERROR);
+			/*Alert alert = new Alert(AlertType.ERROR);
 			alert.setContentText("Don't have enough " + name + " in stock ,we have "+(int)DVDStock[i]+" in stock");
 			alert.showAndWait();
-			price=-1.0;
+			price=-1.0;*/
+			throw new MyException("Don't have enough " + name + " in stock ,we have "+(int)DVDStock[i]+" in stock");
 		}else {
 			this.DVDStock[i] -= stock;
-			//oanPage loanpage = new LoanPage();
+			
 			String card = rentPage.getDiscount();
 			double discount = 1;
 			if(card.equals("Gold Card")) {
@@ -96,7 +74,7 @@ public class Inventory {
 			}else {
 				discount = 1;
 			}
-			price = (Double) (discount)*(this.DVDPrice[i] + day*5);
+			price = (Double) (discount)*(this.DVDPrice[i] + day*5+stock);
 		}
 		return price;
 		
@@ -108,7 +86,7 @@ public class Inventory {
 	}
 
 	public boolean isReTurnable() {
-		return reTurnable;
+		return returnable;
 	}
 	
 	

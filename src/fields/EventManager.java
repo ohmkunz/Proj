@@ -13,9 +13,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
+import javafx.stage.Stage;
+import fields.MyException;
 public class EventManager {
 	
 	private RentList rentList;
@@ -43,7 +43,7 @@ public class EventManager {
 	}
 	
 	public void goBtn(Button goBtn,Stage stage, Scene scene,StackPane s) {
-		int ii = 0;
+		
 		goBtn.setOnAction(e-> {
 			
 			
@@ -110,12 +110,17 @@ public class EventManager {
 			try {
 				//inventory = new Inventory(loanpage.getDVDNameCombobox(),loanpage.getTheNumberToLoan(),loanpage.getDay());
 				//inventory = new Inventory(loanpage);
-				double price = inventory.getPrice(rentPage.getDVDNameCombobox(), rentPage.getDay(), rentPage.getTheNumberToRent());
-				if (price<0) {
+				double price = inventory.rentDVD(rentPage.getDVDNameCombobox(), rentPage.getDay(), rentPage.getTheNumberToRent());
+	/* if (price<0) {
 					return;
-				}
+				}*/
 				rentList.addData(name, tel, rentPage.getDVDNameCombobox(), price,rentPage.getTheNumberToRent());
 				//loanpageright.addData(loanpage.getDVDNameCombobox(),""+loanpage.getTheNumberToLoan(), loanpage.getDiscount(), 8);
+			}catch(MyException myException) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setContentText(myException.toString().trim().replace("fields.MyException: ", ""));
+				alert.showAndWait();
 			}catch(Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");
@@ -125,10 +130,10 @@ public class EventManager {
 		}
 	}
 	
-	private class confirmBtnEventHandler implements EventHandler<ActionEvent>{
+	private class confirmBtnEventHandler  implements EventHandler<ActionEvent> {
 		
 		public confirmBtnEventHandler() {
-			int numberToreturn;
+			
 		}
 
 		@Override
@@ -138,7 +143,7 @@ public class EventManager {
 				
 				
 				
-				if (inventory.ReturnDVD(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox())) {
+				if (inventory.returnDVD(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox())) {
 					returnList.addData(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox(),name,tel);
 					return;
 				
@@ -150,6 +155,12 @@ public class EventManager {
 				//rentList.addData(home.getName(),home.getTel(),rentPage.getDVDNameCombobox(),returnPage.getNumberCombobox() );
 				//loanpageright.addData(loanpage.getCustomerName(), loanpage.getCustomerTel(), loanpage.getDVDNameCombobox(), price);
 				//loanpageright.addData(loanpage.getDVDNameCombobox(),""+loanpage.getTheNumberToLoan(), loanpage.getDiscount(), 8);
+			}catch(MyException myException) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setContentText(myException.toString().trim().replace("fields.MyException: ", ""));
+				alert.showAndWait();
+			
 			}catch(Exception e) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Error");

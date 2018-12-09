@@ -37,9 +37,9 @@ public class RentList extends StackPane {
 		
 		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
 		
-		Label newLabel = new Label(Number++ + " " + name + "#" + tel + "\nrent "+loanNumber+ " of "+ DVDName + " .Price is " + price + " bath .");
+		Label newLabel = new Label(Number++ + ". " + name + " Tel." + tel + "\nrent "+loanNumber+ " of "+ DVDName + " .Price is " + price + " bath .");
 		newLabel.setFont(f);
-		newLabel.setStyle("-fx-text-fill:#B2B2B2;"
+		newLabel.setStyle("-fx-text-fill:#2A2E37;"
 				+ "fx-font-size:10px");
 		logDataList.add(newLabel);
 		logListView.scrollTo(newLabel);

@@ -22,7 +22,7 @@ public class ReturnPage extends HBox {
 	private ButtonField confirm;
 	private ButtonField back;
 	public ReturnPage() {
-		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
+		
 		setAlignment(Pos.CENTER);
 		setSpacing(30);
 		setPadding(new Insets(15));
@@ -35,37 +35,22 @@ public class ReturnPage extends HBox {
 		collector.setPadding(new Insets(15));
 		///////////////////
 		DVDName = new Label("DVD List");
-		DVDName.setFont(f);
-		DVDName.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
+		
 		DVDNameCombobox = new ComboBox<>();
 		DVDNameCombobox.getItems().addAll("Lord of the ring","Harry potter","Game of throne",
 				"Divergent", "Twilight", "Hungergame", "Percy jackson");
 		DVDNameCombobox.setEditable(false);
-		DVDNameCombobox.setStyle("-fx-font-family:thaisanslite;"
-				+ "-fx-color:#B2B2B2;"
-				+ "-fx-font-size : 15pt;"
-				+"src:url(font/supermarket.tff);"
-				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
-				+ "-fx-background-color:#FFFFFF;");
+		
+		setupCombobox(DVDNameCombobox, DVDName);
 		/////////////////////////
 		
 		Number = new Label("Number To Return");
-		Number.setFont(f);
-		Number.setStyle("-fx-text-fill:#B2B2B2;"
-				+ "fx-font-size:25pt");
 		
 		NumberCombobox = new ComboBox<>();
 		NumberCombobox.getItems().addAll("1","2","3");
 		NumberCombobox.setEditable(true);
-		NumberCombobox.setStyle("-fx-font-family:thaisanslite;"
-				+ "-fx-color:#B2B2B2;"
-				+ "-fx-font-size : 15pt;"
-				+"src:url(font/supermarket.tff);"
-				+ "-fx-pref-height: 40px;"
-				+ "-fx-pref-width: 300px;"
-				+ "-fx-background-color:#FFFFFF;");
+		
+		setupCombobox(NumberCombobox,Number);
 		////////////////
 		HBox choice = new HBox();
 		choice.setAlignment(Pos.CENTER);
@@ -109,5 +94,21 @@ public class ReturnPage extends HBox {
 		DVDNameCombobox.getSelectionModel().clearSelection();;
 		NumberCombobox.getSelectionModel().clearSelection();
 	}
-	
+	public <T> void setupCombobox(ComboBox<T> comboBox,Label headLabel) {
+		
+		Font f = Font.loadFont(ClassLoader.getSystemResource("font/thaisanslite.ttf").toExternalForm(), 25);
+		
+		headLabel.setFont(f);
+		
+		headLabel.setStyle("-fx-text-fill:#B2B2B2;"
+				+ "fx-font-size:25pt");
+		comboBox.setStyle("-fx-font-family:thaisanslite;"
+				+ "-fx-color:#B2B2B2;"
+				+ "-fx-font-size : 15pt;"
+				+"src:url(font/supermarket.tff);"
+				+ "-fx-pref-height: 40px;"
+				+ "-fx-pref-width: 300px;"
+				+ "-fx-background-color:#FFFFFF;");
+		
+	}
 }
