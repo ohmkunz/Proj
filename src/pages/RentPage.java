@@ -21,6 +21,7 @@ public class RentPage extends HBox {
 	
 	private ButtonField back;
 	private ButtonField calculate;
+	private ButtonField home;
 	private RentList rentList;
 	
 	public RentPage() {
@@ -35,7 +36,7 @@ public class RentPage extends HBox {
 		
 		VBox collector = new VBox();
 		collector.setAlignment(Pos.CENTER);
-		collector.setSpacing(10);
+		collector.setSpacing(30);
 		collector.setPadding(new Insets(10));
 		
 		this.head = new MakeHead("cinema","Choose What You Want");
@@ -90,7 +91,9 @@ public class RentPage extends HBox {
 		calculate = new ButtonField("Calculation","#e27589");
 		choice.getChildren().addAll(back,calculate);
 		//////
-		collector.getChildren().addAll(head,DVDNameCombobox,Discount,theNumberToRent,dayForRent,choice);
+		this.home = new ButtonField("Home", "#AEFFFF");
+		/////
+		collector.getChildren().addAll(head,DVDNameCombobox,Discount,theNumberToRent,dayForRent,choice,home);
 		rentList = new RentList();
 		rentList.setPrefWidth(500);
 		
@@ -157,7 +160,9 @@ public class RentPage extends HBox {
 		
 	}
 	
-	
+	public Button getHome() {
+		return home.getButton();
+	}
 
 	
 }

@@ -21,6 +21,7 @@ public class ReturnPage extends HBox {
 	
 	private ButtonField confirm;
 	private ButtonField back;
+	private ButtonField home;
 	public ReturnPage() {
 		
 		setAlignment(Pos.CENTER);
@@ -64,14 +65,18 @@ public class ReturnPage extends HBox {
 		
 		this.returnList = new ReturnList();
 		this.returnList.setPrefWidth(500);
-		
-		
-		collector.getChildren().addAll(head,DVDNameCombobox,NumberCombobox,choice);
+		///
+		this.home = new ButtonField("Home", "#AEFFFF");
+		collector.getChildren().addAll(head,DVDNameCombobox,NumberCombobox,choice,home);
 		getChildren().addAll(collector,returnList);
 	}
 	
 	public Button getBackBtn() {
 		return back.getButton();
+	}
+	
+	public Button getHome() {
+		return home.getButton();
 	}
 	
 	public String getDVDNameCombobox() {
@@ -107,4 +112,6 @@ public class ReturnPage extends HBox {
 		comboBox.setPromptText(promptText);
 		
 	}
+
+	
 }

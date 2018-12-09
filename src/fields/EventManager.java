@@ -10,6 +10,7 @@ import pages.ReturnPage;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -42,7 +43,7 @@ public class EventManager {
 		confirm.setOnAction(new confirmBtnEventHandler());
 	}
 	
-	public void goBtn(Button goBtn,Stage stage, Scene scene,StackPane s) {
+	public void goBtn(Button goBtn,Stage stage, Scene scene,Node s) {
 		
 		goBtn.setOnAction(e-> {
 			
@@ -170,7 +171,7 @@ public class EventManager {
 		}
 	}
 	
-	public void RentBtn(Button RentBtn, Stage stage, Scene scene,StackPane s) {
+	public void RentBtn(Button RentBtn, Stage stage, Scene scene,Node s) {
 		RentBtn.setOnAction(e-> {
 			
 			FadeTransition fade = new FadeTransition();
@@ -185,7 +186,7 @@ public class EventManager {
 		});
 	}
 	
-	public void ReturnBtn(Button returnBtn, Stage stage, Scene scene,StackPane s) {
+	public void ReturnBtn(Button returnBtn, Stage stage, Scene scene,Node s) {
 		returnBtn.setOnAction(e-> {
 			
 			FadeTransition fade = new FadeTransition();
@@ -200,8 +201,24 @@ public class EventManager {
 		});
 	}
 	
-	public void BackBtn(Button backBtn, Stage stage, Scene scene,StackPane s) {
+	public void BackBtn(Button backBtn, Stage stage, Scene scene,Node s) {
 		backBtn.setOnAction(e-> {
+			rentPage.clearSelection();
+			returnPage.clearSelection();
+			FadeTransition fade = new FadeTransition();
+			fade.setDuration(javafx.util.Duration.millis(700));
+			fade.setNode(s);
+			fade.setFromValue(0.2);
+			fade.setToValue(1);
+			fade.play();
+			
+			stage.setScene(scene);
+			
+		});
+	}
+	
+	public void HomeBtn(Button homeBtn, Stage stage, Scene scene,Node s) {
+		homeBtn.setOnAction(e-> {
 			rentPage.clearSelection();
 			returnPage.clearSelection();
 			FadeTransition fade = new FadeTransition();

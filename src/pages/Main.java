@@ -56,7 +56,8 @@ public class Main extends Application{
         event.BackBtn(rentPage.getBackBtn(), primaryStage, scene2,s2);
         event.setUpCalculateBtn(rentPage.getCalculationBtn());
         event.setUpComfirmbtn(returnPage.getConfirm());
-        //event.CalculateBtn(loanpage.getCalculationBtn());
+        event.HomeBtn(rentPage.getHome(), primaryStage, scene1, s1);
+        event.HomeBtn(rentPage.getHome(), primaryStage, scene1, s1);
         event.BackBtn(returnPage.getBackBtn(), primaryStage, scene2,s2);
         event.ReturnBtn(choose.getReTurn(), primaryStage, scene4,s4);
 		

@@ -16,6 +16,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>res/icons/Home-m.png</name>
+			<type>1</type>
+			<location>C:/Users/SONY-VAIO/2110215/2018-1/Proj/res/icons/Home-m.png</location>
+		</link>
+		<link>
+			<name>res/icons/Home.png</name>
+			<type>1</type>
+			<location>C:/Users/SONY-VAIO/2110215/2018-1/Proj/res/icons/Home.png</location>
+		</link>
+		<link>
 			<name>res/icons/cd.png</name>
 			<type>1</type>
 			<location>C:/Users/SONY-VAIO/2110215/2018-1/Proj/res/icons/cd.png</location>
