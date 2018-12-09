@@ -159,4 +159,13 @@ public class RentPage extends HBox {
 		int day = Integer.parseInt(dayForRent.getValue().toString().substring(0, 2).trim());
 		return day;
 	}
+	
+	public void clearSelection() {
+		
+		DVDNameCombobox.getSelectionModel().clearSelection();
+		Discount.getSelectionModel().clearSelection();
+		theNumberToRent.getSelectionModel().clearSelection();
+		dayForRent.getSelectionModel().clearSelection();
+	}
+	
 }

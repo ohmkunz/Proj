@@ -52,26 +52,33 @@ public class EventManager {
 				
 				try {
 					String error = "";
-					if (home.getName().equals("")|isNumeric(home.getName())) {
+					this.name = home.getName();
+					this.tel = home.getTel();
+					
+					if (name.equals("")|isNumeric(name)) {
 						error+="-Please input your name in right way (not include digit in your name).";
-					}if (!checkTel(home.getTel())|home.getTel().length()!=10) {
+					}if (!checkTel(tel)|tel.length()!=10) {
 						error+="\n-Please input your tel no. in right way (not include char in your tel and your tel must be in length 10 ).";
+					}if(tel.length()>2 && !tel.substring(0, 2).equals("08") && !tel.substring(0, 2).equals("09")) {
+						error+="\n-Tel. Form must be 08XXXXXXXX or 09XXXXXXXX";
 					}
 					if (!error.equals("")) {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("Error");
-						//alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+						
 						alert.setContentText(error);
 						alert.showAndWait();
 						error="";
 						return;
 					}
-					this.name = home.getName();
-					this.tel = home.getTel();
-					this.home.setName();
-					this.home.setTel();
+					this.home.clearName();
+					this.home.clearTel();
+					
 				}catch(Exception ect){
-					ect.printStackTrace();
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setContentText("please input all field");
+					alert.showAndWait();
 					
 				}
 				FadeTransition fade = new FadeTransition();
@@ -128,12 +135,18 @@ public class EventManager {
 		public void handle(ActionEvent arg0) {
 			// TODO Auto-generated method stub
 			try {
-				inventory.ReturnDVD(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox());
-				if (!inventory.isReTurnable()) {
+				
+				
+				
+				if (inventory.ReturnDVD(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox())) {
+					returnList.addData(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox(),name,tel);
 					return;
+				
 				}
+				
+				
 				//int numberToreturn;
-				returnList.addData(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox(),name,tel);
+				//returnList.addData(returnPage.getDVDNameCombobox(), returnPage.getNumberCombobox(),name,tel);
 				//rentList.addData(home.getName(),home.getTel(),rentPage.getDVDNameCombobox(),returnPage.getNumberCombobox() );
 				//loanpageright.addData(loanpage.getCustomerName(), loanpage.getCustomerTel(), loanpage.getDVDNameCombobox(), price);
 				//loanpageright.addData(loanpage.getDVDNameCombobox(),""+loanpage.getTheNumberToLoan(), loanpage.getDiscount(), 8);
@@ -178,7 +191,8 @@ public class EventManager {
 	
 	public void BackBtn(Button backBtn, Stage stage, Scene scene,StackPane s) {
 		backBtn.setOnAction(e-> {
-			
+			rentPage.clearSelection();
+			returnPage.clearSelection();
 			FadeTransition fade = new FadeTransition();
 			fade.setDuration(javafx.util.Duration.millis(700));
 			fade.setNode(s);

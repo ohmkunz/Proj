@@ -23,13 +23,13 @@ public class ReturnList extends StackPane {
 	private int Number = 1;
 	
 	public ReturnList() {
-		setBorder(new Border(new BorderStroke(Color.BLUE, BorderStrokeStyle.SOLID, 
+		setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, 
 				CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 			setPrefWidth(400);
 			logListView = new ListView<Label>(logDataList);
 			logListView.setPrefWidth(250);
 			logListView.setFocusTraversable(true);
-			logListView.setBackground(new Background(new BackgroundFill(Color.IVORY, null, null)));
+			logListView.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 			logListView.setPlaceholder(new Label(""));
 			
 			getChildren().add(logListView);

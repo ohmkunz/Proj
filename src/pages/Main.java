@@ -25,7 +25,7 @@ public class Main extends Application{
 		Home home = new Home();
 		s1.getChildren().add(home);
 		Scene scene1 = new Scene(s1,1000, 800);
-		;
+
 		
 		
 		StackPane s2 = new StackPane();

@@ -40,10 +40,10 @@ public class Home extends VBox{
 	public Button getGo() {
 		return go.getButton();
 	}
-	public void setName() {
+	public void clearName() {
 		this.name.clear();;
 	}
-	public void setTel() {
+	public void clearTel() {
 		this.tel.clear();
 	}
 	

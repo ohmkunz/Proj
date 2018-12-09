@@ -44,11 +44,11 @@ public class Inventory {
 			String card = this.rentPage.getDiscount();
 			double discount = 1;
 			if(card.equals("Gold card")) {
-				discount = 0.9;
+				discount = 0.7;
 			}else if(card.equals("Silver card")) {
 				discount = 0.8;
 			}else if(card.equals("Copper card")) {
-				discount = 0.7;
+				discount = 0.9;
 			}else {
 				discount = 1;
 			}
@@ -57,7 +57,7 @@ public class Inventory {
 		
 	//}
 	
-	public void ReturnDVD(String name, int stock) {
+	public boolean ReturnDVD(String name, int stock) {
 		name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
 		int i = Arrays.asList(DVDName).indexOf(name);
 		if(DVDStock[i]+stock>12) {
@@ -65,11 +65,13 @@ public class Inventory {
 			alert.setContentText("Number of DVD has reached the max number.\nNow we have "+(int)DVDStock[i]+" instock"
 					+ "\nPlease input the right number of return DVD again.");
 			alert.showAndWait();
-			this.reTurnable = false;
-			return;
+			return false;
+			
 		}else {
 			this.DVDStock[i] += stock;
+			return true;
 		}
+		
 	}
 	
 	public double getPrice(String name,int day,int stock) {

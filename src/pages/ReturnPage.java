@@ -78,6 +78,8 @@ public class ReturnPage extends HBox {
 		choice.getChildren().addAll(back,confirm);
 		
 		this.returnList = new ReturnList();
+		this.returnList.setPrefWidth(500);
+		
 		
 		collector.getChildren().addAll(head,DVDName,DVDNameCombobox,Number,NumberCombobox,choice);
 		getChildren().addAll(collector,returnList);
@@ -101,6 +103,11 @@ public class ReturnPage extends HBox {
 
 	public ReturnList getReturnList() {
 		return returnList;
+	}
+	
+	public void clearSelection() {
+		DVDNameCombobox.getSelectionModel().clearSelection();;
+		NumberCombobox.getSelectionModel().clearSelection();
 	}
 	
 }
